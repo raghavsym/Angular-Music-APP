@@ -1,0 +1,46 @@
+<!doctype html>
+<html data-ng-app="LetsChangeApp">
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <meta name="author" content="J. Thomas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <!--<link rel="icon" href="/favicon.ico">-->
+</head>
+<body data-ng-controller="VideosController">
+<header>
+    <h1>Lets<strong>Change</strong></h1>
+    <form method="post" name="addSongs" class="add-songs" ng-submit="submitForm()">
+        <label>Add URL</label>
+        <input type="text" name="title" class="form-control" ng-model="song.url">
+        <button type="submit" class="btn myButton">Submit</button>
+    </form>
+</header>
+<div id="results">
+    <div class="video" data-ng-repeat="video in results">
+        <img class="video-image" data-ng-src="{{ video.thumbnail }}">
+        <p class="video-title" data-ng-click="queue(video.id, video.title)">{{ video.title }}</p>
+        <p class="video-author">{{ video.id }}</p>
+        <p class="video-description">{{ video.duration }}</p>
+        <button type="submit" ng-click="deleteSong(video.id )">Delete</button>
+    </div>
+</div>
+<div id="player">
+    <div id="placeholder"></div>
+</div>
+<div id="playlist">
+    <p id="current">{{ youtube.videoTitle }}</p>
+    <ol id="upcoming" data-ng-show="playlist">
+        <li data-ng-repeat="video in upcoming">
+            <p class="item-delete" data-ng-click="delete(upcoming, video.id)">delete</p>
+            <p class="item-title" data-ng-click="launch(video.id, video.title)">{{video.title}}</p>
+        </li>
+    </ol>
+</div>
+<script src="./js/angular.min.js"></script>
+<script src="./app.js"></script>
+<script src="./js/controller/controller.js"></script>
+</body>
+</html>
